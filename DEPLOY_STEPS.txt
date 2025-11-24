@@ -1,0 +1,113 @@
+═══════════════════════════════════════════════════════════════
+🚀 ПОШАГОВАЯ ИНСТРУКЦИЯ ДЕПЛОЯ НА RENDER.COM
+═══════════════════════════════════════════════════════════════
+
+ШАГ 1: ПОДГОТОВКА GITHUB РЕПОЗИТОРИЯ
+───────────────────────────────────────────────────────────────
+
+1. Создайте аккаунт на GitHub (если нет):
+   https://github.com/signup
+
+2. Создайте новый репозиторий:
+   - Название: gymgenius-ai
+   - Public или Private
+   - НЕ добавляйте README
+
+3. Загрузите код:
+   Откройте PowerShell или Git Bash в папке проекта и выполните:
+   
+   git init
+   git add .
+   git commit -m "Initial commit"
+   git branch -M main
+   git remote add origin https://github.com/YOUR_USERNAME/gymgenius-ai.git
+   git push -u origin main
+   
+   ⚠️ Замените YOUR_USERNAME на ваш GitHub username
+
+
+ШАГ 2: РЕГИСТРАЦИЯ НА RENDER
+───────────────────────────────────────────────────────────────
+
+1. Зайдите на https://render.com
+2. Нажмите "Get Started for Free"
+3. Войдите через GitHub (рекомендуется)
+
+
+ШАГ 3: СОЗДАНИЕ WEB SERVICE
+───────────────────────────────────────────────────────────────
+
+1. Нажмите "New +" → "Web Service"
+
+2. Подключите репозиторий:
+   - Выберите "Connect a repository"
+   - Выберите ваш репозиторий gymgenius-ai
+   - Нажмите "Connect"
+
+3. Настройте сервис:
+   Name: gymgenius-backend
+   Region: Frankfurt (или ближайший)
+   Branch: main
+   Root Directory: fitness-ai-app/backend ⚠️ ВАЖНО!
+   Runtime: Python 3
+   Build Command: pip install -r requirements.txt
+   Start Command: uvicorn main:app --host 0.0.0.0 --port $PORT
+
+4. Нажмите "Advanced":
+   Auto-Deploy: Yes
+
+
+ШАГ 4: НАСТРОЙКА ПЕРЕМЕННЫХ ОКРУЖЕНИЯ
+───────────────────────────────────────────────────────────────
+
+В секции "Environment Variables" добавьте:
+
+1. OPENAI_API_KEY
+   Value: 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
+
+2. ENVIRONMENT
+   Value: production
+
+
+ШАГ 5: ДЕПЛОЙ
+───────────────────────────────────────────────────────────────
+
+1. Нажмите "Create Web Service"
+2. Дождитесь завершения деплоя (2-5 минут)
+3. Сохраните URL вашего сервиса:
+   https://gymgenius-backend.onrender.com
+
+
+ШАГ 6: ПРОВЕРКА
+───────────────────────────────────────────────────────────────
+
+Откройте в браузере:
+https://your-backend-url.onrender.com/
+
+Должен вернуться:
+{"message": "GymGenius AI API", "status": "running"}
+
+
+ШАГ 7: ОБНОВЛЕНИЕ FRONTEND
+───────────────────────────────────────────────────────────────
+
+1. Откройте файл: mobile/app.config.js
+
+2. Замените строку:
+   const apiUrl = 'https://your-backend-url.onrender.com';
+   
+   На ваш реальный URL от Render
+
+3. Пересоберите приложение:
+   cd mobile
+   npm install
+   npm start
+
+
+═══════════════════════════════════════════════════════════════
+✅ ГОТОВО! Ваше приложение задеплоено!
+═══════════════════════════════════════════════════════════════
+
+Подробные инструкции: DEPLOY_NOW.md
+Помощь: DEPLOY.md
+
