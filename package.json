@@ -1,26 +1,11 @@
 {
-  "name": "gymgenius-ai",
+  "name": "gymgenius-backend",
   "version": "1.0.0",
-  "description": "GymGenius AI - Fitness Equipment Recognition App",
-  "private": true,
+  "description": "GymGenius AI Backend - FastAPI Server",
   "scripts": {
-    "start:backend": "cd backend && python main.py",
-    "start:mobile": "cd mobile && npm start",
-    "install:backend": "cd backend && pip install -r requirements.txt",
-    "install:mobile": "cd mobile && npm install",
-    "install:all": "npm run install:backend && npm run install:mobile",
-    "build": "cd mobile && npm install && npm run web",
-    "build:mobile": "cd mobile && npm run start",
-    "dev": "echo 'Запустите в разных терминалах: npm run start:backend и npm run start:mobile'"
+    "start": "python main.py",
+    "dev": "python main.py",
+    "test": "python test_backend.py"
   },
-  "keywords": [
-    "fitness",
-    "ai",
-    "react-native",
-    "expo",
-    "fastapi"
-  ],
-  "author": "",
-  "license": "ISC"
+  "dependencies": {}
 }
-
